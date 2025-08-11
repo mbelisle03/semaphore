@@ -4,7 +4,7 @@
   gather_facts: no
   connection: network_cli
   vars:
-    ansible_network_os: dellos10  # Change to 'dellos6' or 'dellos9' if using older firmware
+    ansible_network_os: dellos6  # Change to 'dellos6' or 'dellos9' if using older firmware
     ansible_user: admin            # Switch username
     ansible_password: your_password_here
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
