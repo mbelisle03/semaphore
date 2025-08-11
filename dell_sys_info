@@ -1,6 +1,6 @@
 ---
 - name: Gather information from Dell 1500 switch
-  hosts: dell_switch
+  hosts: CITO_SW
   gather_facts: no
   connection: network_cli
   vars:
