@@ -1,0 +1,33 @@
+---
+- name: Gather information from Dell 1500 switch
+  hosts: dell_switch
+  gather_facts: no
+  connection: network_cli
+  vars:
+    ansible_network_os: dellos10  # Change to 'dellos6' or 'dellos9' if using older firmware
+    ansible_user: admin            # Switch username
+    ansible_password: your_password_here
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
+  tasks:
+    - name: Gather basic device facts
+      dellos6_facts:
+        gather_subset: all
+      register: device_facts
+
+    - name: Show system information
+      debug:
+        var: device_facts
+
+    - name: Run custom show commands
+      dellos6_command:
+        commands:
+          - show version
+          - show system
+          - show running-configuration
+          - show interfaces status
+      register: show_output
+
+    - name: Display output from commands
+      debug:
+        var: show_output.stdout_lines
